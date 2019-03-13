@@ -12,6 +12,7 @@ AUTH_URL_PART = 'client_id={}&client_secret={}&v={}'.format(CLIENT_ID, CLIENT_SE
 # we need to do some query magic to get more than 50 results
 # https://stackoverflow.com/questions/14211120/maximum-number-of-results-in-foursquare-api
 def venuSearch(search_param):
+  '''
   url = "{}/venues/search?near={}&limit=50&{}&intent=browse&radius=9000".format(BASE_URL, search_param, AUTH_URL_PART)
   request = requests.get(url)
   
@@ -53,7 +54,15 @@ def venuSearch(search_param):
   finalJSON = {
     'venues': venues
   }
-  return finalJSON
+  return finalJSON '''
+  url = "{}/venues/search?near={}&limit=50&{}&intent=browse&radius=100000".format(BASE_URL, search_param, AUTH_URL_PART)
+  request = requests.get(url).json()
+  print(request)
+  venues = request['response']['venues']
+
+  return {
+    'venues': venues
+  }
 
 def venuPhotos(venuID):
   url = "{}/venues/{}/photos?client_id={}&client_secret={}&v={}".format(BASE_URL, venuID, CLIENT_ID, CLIENT_SECRET, DATE)
