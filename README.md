@@ -24,3 +24,6 @@ flask run
 ```
 
 http://ratings.food.gov.uk/open-data/en-GB
+
+5. Troubleshooting
+Try installing
